@@ -12,7 +12,8 @@
   </body>
   <script type="text/javascript">        
     $("#test").click(function(){
-      $("#result").empty();
+      var result = jQuery("#result");
+      result.empty();
 
       $.ajax({
         type: "POST",
@@ -25,14 +26,19 @@
         var doc = "";
         var docs = data.response.docs;
         if (docs.length > 0) {
-            doc = JSON.stringify(docs[0]);
+          for (var i=0; i<docs.length; i++){
+	    docToHtml(result, docs[i]);
+	  }
         } else {
-            doc = "結果が見つかりませんでした。";
+          result.text("結果が見つかりませんでした。");
         }
-        $("#result").text(doc);
       }).fail(function(error){
           console.log(error);
       });
     });
+    function docToHtml(target, doc) {
+      jQuery('<h3>').append(doc['id'] + ':' + doc['title']).appendTo(target);
+      jQuery('<p>').append(doc['body']).appendTo(target);
+    }
   </script>
 </html>
