@@ -6,8 +6,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
-    <input id="query" type="text">
-    <input id="test" type="button" value="Test">
+    <textarea id="query"></textarea>
+    <input id="test" type="button" value="検索">
     <div id="result"></div>
   </body>
   <script type="text/javascript">        
@@ -37,8 +37,10 @@
       });
     });
     function docToHtml(target, doc) {
-      jQuery('<h3>').append(doc['id'] + ':' + doc['title']).appendTo(target);
-      jQuery('<p>').append(doc['body']).appendTo(target);
+      var href = 'https://bpm.questetra.net/OR/ProcessInstance/listView?processInstanceId=' + doc['id'];
+      var link = jQuery('<a>').attr('href', href).append(dic['id'] + ':' + doc['title']);
+      jQuery('<div>').append(link).appendTo(target);
+      //jQuery('<p>').append(doc['body']).appendTo(target);
     }
   </script>
 </html>
