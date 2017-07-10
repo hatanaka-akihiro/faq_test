@@ -38,7 +38,7 @@
     });
     function docToHtml(target, doc) {
       var href = 'https://bpm.questetra.net/OR/ProcessInstance/listView?processInstanceId=' + doc['id'];
-      var link = jQuery('<a>').attr('href', href).append(dic['id'] + ':' + doc['title']);
+      var link = jQuery('<a>').attr('href', href).append(doc['id'] + ':' + doc['title']);
       jQuery('<div>').append(link).appendTo(target);
       //jQuery('<p>').append(doc['body']).appendTo(target);
     }
